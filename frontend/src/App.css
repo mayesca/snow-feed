@@ -1,0 +1,105 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-header {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.App-header p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.resort-section {
+  margin: 2rem 0;
+}
+
+select {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+
+select:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+select option {
+  background-color: #2a5298;
+  color: white;
+}
+
+.weather-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(45deg, #00b4db, #0083b0);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin: 1rem 0;
+}
+
+.weather-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.weather-button:active {
+  transform: translateY(0);
+}
+
+.error {
+  background-color: rgba(255, 87, 87, 0.2);
+  border: 1px solid rgba(255, 87, 87, 0.4);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.loading {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 1rem;
+  }
+
+  .App-header p {
+    font-size: 1rem;
+  }
+
+  select {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .weather-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
