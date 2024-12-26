@@ -5,7 +5,7 @@ A simple web application built with Cursor AI that allows users to track ski res
 ## Features
 
 - Add and remove ski resort locations
-- Fetch real-time weather data from weather.gov
+- Fetch real-time weather data from [weather.gov](https://www.weather.gov/documentation/services-web-api)
 - Clean, responsive UI built with React and Tailwind CSS
 - Python/Flask backend with dependency injection
 
