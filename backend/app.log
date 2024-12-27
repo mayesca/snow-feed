@@ -1,8 +1,0 @@
-2024-12-25 17:32:32,919 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-25 17:32:54,867 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-25 17:34:43,680 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-25 17:41:22,170 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-25 17:42:53,108 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-25 17:57:04,817 - backend.gateway.weather_gateway - INFO - This is the data <Response [200]>
-2024-12-26 13:16:43,813 - backend.gateway.ski_resort_gateway - INFO - Resort already exists: Mohawk Mountain Ski Area
-2024-12-26 13:21:05,762 - backend.gateway.ski_resort_gateway - INFO - Resort already exists: Mohawk Mountain Ski Area
