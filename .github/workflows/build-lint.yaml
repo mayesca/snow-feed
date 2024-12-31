@@ -51,17 +51,22 @@ jobs:
         working-directory: backend
         run: pipenv install --dev
 
-      - name: Run pre-commit
+      - name: Run autoflake recursively in-place remove unused imports
         if: matrix.language == 'python'
         working-directory: backend
-        run: pipenv run pre-commit run --all-files
+        run: pipenv run autoflake --remove-all-unused-imports --recursive --in-place --exclude=__init__.py src
 
-      # - name: Run pylint
-      #   if: matrix.language == 'python'
-      #   working-directory: backend
-      #   run: pipenv run pylint src
+      - name: Run isort
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: pipenv run isort src
 
-      # - name: Run Black Formatter
-      #   if: matrix.language == 'python'
-      #   working-directory: backend
-      #   run: pipenv run black src
+      - name: Run pylint
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: pipenv run pylint src
+
+      - name: Run Black Formatter
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: pipenv run black src
