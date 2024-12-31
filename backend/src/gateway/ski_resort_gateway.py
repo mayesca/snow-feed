@@ -1,8 +1,10 @@
 import csv
 import os
-from backend.src.log_util import get_logger
+
 from flask import Response
 from jsonschema import ValidationError, validate
+
+from backend.src.log_util import get_logger
 
 LOG = get_logger(__name__)
 
@@ -96,6 +98,7 @@ class SkiResortGateway:
         if case_insensitive_name in case_insensitive_keys:
             # Remove from in-memory storage
             del self.resort_map[name]
+            # pylint: disable=attribute-defined-outside-init
             self.ski_resorts = [
                 resort for resort in self.ski_resorts if resort["name"] != name
             ]

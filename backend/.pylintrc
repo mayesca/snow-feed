@@ -8,7 +8,6 @@ disable=C0111,C0103,C0303,W0311,W0603,W0703,R0903,R0913,R0914,C0301,C0302,R0902,
 
 [REPORTS]
 output-format=text
-files-output=no
 reports=no
 evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
 
@@ -22,7 +21,6 @@ include-naming-hint=no
 max-line-length=120
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
 single-line-if-stmt=no
-no-space-check=trailing-comma,dict-separator
 max-module-lines=2000
 indent-string='    '
 
