@@ -51,12 +51,17 @@ jobs:
         working-directory: backend
         run: pipenv install --dev
 
-      - name: Run pylint
+      - name: Run pre-commit
         if: matrix.language == 'python'
         working-directory: backend
-        run: pipenv run pylint src
+        run: pipenv run pre-commit run --all-files
 
-      - name: Run Black Formatter
-        if: matrix.language == 'python'
-        working-directory: backend
-        run: pipenv run black src
+      # - name: Run pylint
+      #   if: matrix.language == 'python'
+      #   working-directory: backend
+      #   run: pipenv run pylint src
+
+      # - name: Run Black Formatter
+      #   if: matrix.language == 'python'
+      #   working-directory: backend
+      #   run: pipenv run black src
