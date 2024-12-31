@@ -17,43 +17,46 @@ jobs:
         language: [node, python]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js (for frontend)
-      if: matrix.language == 'node'
-      uses: actions/setup-node@v3
-      with:
-        node-version: '23.1.0'
+      - name: Set up Node.js (for frontend)
+        if: matrix.language == 'node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23.1.0"
 
-    - name: Install frontend dependencies
-      if: matrix.language == 'node'
-      working-directory: frontend
-      run: npm ci
+      - name: Install frontend dependencies
+        if: matrix.language == 'node'
+        working-directory: frontend
+        run: npm ci
 
-    - name: Run ESLint
-      if: matrix.language == 'node'
-      working-directory: frontend
-      run: npm run lint
+      - name: Run ESLint
+        if: matrix.language == 'node'
+        working-directory: frontend
+        run: npm run lint
 
-    - name: Set up Python (for backend)
-      if: matrix.language == 'python'
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11.4'
+      - name: Set up Python (for backend)
+        if: matrix.language == 'python'
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.4"
 
-    - name: Install backend dependencies
-      if: matrix.language == 'python'
-      working-directory: backend
-      run: pipenv install --dev
+      - name: Install pipenv
+        if: matrix.language == 'python'
+        run: pip install pipenv
 
-    - name: Run pylint
-      if: matrix.language == 'python'
-      working-directory: backend
-      run: pylint .
+      - name: Install backend dependencies
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: pipenv install --dev
 
-    - name: Run Black Formatter
-      if: matrix.language == 'python'
-      working-directory: backend
-      run: black .
+      - name: Run pylint
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: pylint .
 
+      - name: Run Black Formatter
+        if: matrix.language == 'python'
+        working-directory: backend
+        run: black .
