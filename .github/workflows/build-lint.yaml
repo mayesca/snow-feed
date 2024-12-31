@@ -54,9 +54,9 @@ jobs:
       - name: Run pylint
         if: matrix.language == 'python'
         working-directory: backend
-        run: pylint .
+        run: pipenv run pylint .
 
       - name: Run Black Formatter
         if: matrix.language == 'python'
         working-directory: backend
-        run: black .
+        run: pipenv run black .
