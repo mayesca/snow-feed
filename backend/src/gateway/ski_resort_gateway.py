@@ -1,7 +1,6 @@
 import csv
 import os
-from flask import abort
-from backend.log_util import get_logger
+from backend.src.log_util import get_logger
 from flask import Response
 from jsonschema import ValidationError, validate
 
@@ -29,9 +28,11 @@ class SkiResortGateway:
         self.ski_resorts = []
         # Get the current file's directory and construct relative path
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(current_dir, "..", "data", "favorite_ski_resorts.csv")
+        csv_path = os.path.join(
+            current_dir, "..", "..", "data", "favorite_ski_resorts.csv"
+        )
 
-        with open(csv_path, "r") as file:
+        with open(csv_path, "r", encoding="utf-8") as file:
             csv_reader = csv.DictReader(file)
             for row in csv_reader:
                 resort = {
@@ -54,8 +55,8 @@ class SkiResortGateway:
     def post_ski_resort(self, resort: dict) -> dict:
         try:
             validate(resort, POST_SKI_RESORT_SCHEMA)
-        except ValidationError as e:
-            return Response(f"Invalid resort data!", status=400)
+        except ValidationError:
+            return Response("Invalid resort data!", status=400)
 
         case_insensitive_name = resort["name"].lower()
         case_insensitive_keys = [key.lower() for key in self.resort_map.keys()]
@@ -68,10 +69,12 @@ class SkiResortGateway:
 
         # Get the CSV path (reusing the path construction from pre_load)
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(current_dir, "..", "data", "favorite_ski_resorts.csv")
+        csv_path = os.path.join(
+            current_dir, "..", "..", "data", "favorite_ski_resorts.csv"
+        )
 
         # Append the new resort to the CSV file
-        with open(csv_path, "a", newline="") as file:
+        with open(csv_path, "a", encoding="utf-8", newline="") as file:
             writer = csv.DictWriter(
                 file, fieldnames=["Region", "State", "Name", "Latitude", "Longitude"]
             )
@@ -100,17 +103,17 @@ class SkiResortGateway:
             # Get the CSV path
             current_dir = os.path.dirname(os.path.abspath(__file__))
             csv_path = os.path.join(
-                current_dir, "..", "data", "favorite_ski_resorts.csv"
+                current_dir, "..", "..", "data", "favorite_ski_resorts.csv"
             )
 
             # Read existing data
             temp_resorts = []
-            with open(csv_path, "r", newline="") as file:
+            with open(csv_path, "r", encoding="utf-8", newline="") as file:
                 reader = csv.DictReader(file)
                 temp_resorts = [row for row in reader if row["Name"] != name]
 
             # Write back all resorts except the deleted one
-            with open(csv_path, "w", newline="") as file:
+            with open(csv_path, "w", encoding="utf-8", newline="") as file:
                 writer = csv.DictWriter(
                     file,
                     fieldnames=["Region", "State", "Name", "Latitude", "Longitude"],

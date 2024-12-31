@@ -13,6 +13,8 @@ jsonschema = "*"
 [dev-packages]
 pylint = "*"
 black = "*"
-
+autoflake = "*"
+isort = "*"
+pre-commit = "*"
 [requires]
 python_version = "3.11"

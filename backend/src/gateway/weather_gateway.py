@@ -1,12 +1,10 @@
-from requests import Response, Session
-import os
-
-from typing import Any
+import json
+from typing import Dict, Optional
 
 import requests
-from backend.log_util import get_logger
-from typing import Dict, Optional
-import json
+from requests import Session
+
+from backend.src.log_util import get_logger
 
 LOG = get_logger(__name__)
 
@@ -38,14 +36,14 @@ class WeatherGateway:
         try:
             # First, get the grid endpoint for the coordinates
             points_url = f"{self.__DEFAULT_URL}{latitude},{longitude}"
-            response = requests.get(points_url, headers=headers)
+            response = requests.get(points_url, headers=headers, timeout=10)
             response.raise_for_status()
 
             grid_data = response.json()
             forecast_url = grid_data["properties"]["forecast"]
 
             # Then, get the actual forecast
-            forecast_response = requests.get(forecast_url, headers=headers)
+            forecast_response = requests.get(forecast_url, headers=headers, timeout=10)
             forecast_response.raise_for_status()
 
             return forecast_response.json()

@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request
-from backend.gateway.ski_resort_gateway import SkiResortGateway
-from backend.gateway.weather_gateway import WeatherGateway
+from backend.src.gateway.ski_resort_gateway import SkiResortGateway
+from backend.src.gateway.weather_gateway import WeatherGateway
 from flask_cors import CORS
 
 import inject
