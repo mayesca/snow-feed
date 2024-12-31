@@ -13,6 +13,14 @@ interface AddSkiResortFormProps {
   setResorts: (resorts: SkiResort[]) => void;
 }
 
+class HttpError extends Error {
+  response?: { data?: { error?: string } | string };
+  constructor(message: string, public status: number) {
+    super(message);
+    this.name = "HttpError";
+  }
+}
+
 export const AddSkiResortForm: React.FC<AddSkiResortFormProps> = ({
   resorts,
   setResorts,
@@ -29,12 +37,15 @@ export const AddSkiResortForm: React.FC<AddSkiResortFormProps> = ({
       setResorts([...resorts, response]);
       setResort(emptySkiResort);
       setShowSuccess(true);
-    } catch (error: any) {
-      console.log("Error details:", error); // For debugging
+    } catch (error: unknown) {
+      const httpError = error as HttpError;
+      console.log("Error details:", httpError);
       setErrorMessage(
-        error.response?.data?.error || // Spring Boot typically sends error messages in 'error' field
-          error.response?.data || // If it's a plain string response
-          error.message ||
+        (typeof httpError.response?.data === "object" &&
+          httpError.response.data?.error) ||
+          (typeof httpError.response?.data === "string" &&
+            httpError.response.data) ||
+          httpError.message ||
           "An unexpected error occurred while adding the ski resort"
       );
       setShowError(true);

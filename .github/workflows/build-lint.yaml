@@ -34,7 +34,7 @@ jobs:
       - name: Run ESLint
         if: matrix.language == 'node'
         working-directory: frontend
-        run: npm run lint
+        run: npm run lint:fix
 
       - name: Set up Python (for backend)
         if: matrix.language == 'python'
@@ -54,9 +54,9 @@ jobs:
       - name: Run pylint
         if: matrix.language == 'python'
         working-directory: backend
-        run: pipenv run pylint .
+        run: pipenv run pylint src
 
       - name: Run Black Formatter
         if: matrix.language == 'python'
         working-directory: backend
-        run: pipenv run black .
+        run: pipenv run black src

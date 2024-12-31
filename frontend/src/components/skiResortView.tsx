@@ -23,7 +23,6 @@ const SkiResortView: React.FC<SkiResortViewProps> = ({
   setError,
   onRefresh,
 }) => {
-  const [showModal, setShowModal] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Only select first resort when there's no selection and resorts are available
